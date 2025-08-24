@@ -34,16 +34,18 @@ def folder_organizer(folder):
     if entry.is_file():
       ext = entry.suffix.lower()
       moved = False
+      ignore = False
 
       for category, extentions in CATEGORIES.items():
         if ext in IGNORE_EXTENTIONS:
+          ignore = True
           break
         if ext in extentions:
           move_file(entry, folder / category)
           moved = True
           break
 
-      if not moved:
+      if not (moved or ignore):
         move_file(entry, folder / "Others")
 
 def move_file(file, dest_folder):
