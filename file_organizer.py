@@ -1,5 +1,11 @@
 import shutil
+import argparse
 from pathlib import Path
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-t', '--target', required=True, type=str, nargs=1, help='The target folder to organize files in')
+
+args = parser.parse_args()
 
 CATEGORIES = {
   "Images" : [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp"],
@@ -14,7 +20,7 @@ CATEGORIES = {
   "Others" : []
 }
 
-TARGET_FOLDER = r'C:\Users\Queen\Desktop\Lock in\AI & ML\Python\Train\File organizer\Test folder'
+TARGET_FOLDER = Path(args.target[0])
 
 def folder_organizer(folder):
   for entry in folder.iterdir():
