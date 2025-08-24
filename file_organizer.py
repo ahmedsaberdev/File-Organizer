@@ -95,7 +95,7 @@ def move_file(file: Path, dest_folder: Path):
 if __name__ == "__main__":
   try:
     target_folder = args.target
-    if not target_folder.exist():
+    if not target_folder.exists():
       raise FileNotFoundError(f'Target folder {target_folder} not found.')
     folder_organizer(target_folder)
   except FileNotFoundError as exception:
