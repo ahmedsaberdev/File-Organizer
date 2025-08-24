@@ -1,3 +1,4 @@
+import json
 import shutil
 import time
 import argparse
@@ -22,20 +23,11 @@ class OrganizeHandler(FileSystemEventHandler):
     if not event.is_directory:
       folder_organizer(self.folder)
 
-IGNORE_EXTENTIONS = [".crdownload", ".part", ".tmp"]
+with open('config.json', 'r') as f:
+  config = json.load(f)
 
-CATEGORIES = {
-  "Images" : [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp"],
-  "Videos" : [".mp4", ".mkv", ".mov", ".avi"],
-  "Documents" : [".pdf", ".docx", ".txt", ".xlsx", ".pptx"],
-  "Music" : [".mp3", ".wav", ".flac", ".ogg"],
-  "Archives" : [".zip", ".rar", ".tar", ".gz"],
-  "Scripts" : [".py", ".js", ".sh"],
-  "Source Files" : [".cpp", ".c", ".java"],
-  "Applications" : [".exe"],
-  "Torrents" : [".torrent"],
-  "Others" : []
-}
+IGNORE_EXTENTIONS = config['ignore_extentions']
+CATEGORIES = config['categories']
 
 def folder_organizer(folder):
   for entry in folder.iterdir():
