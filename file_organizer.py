@@ -75,3 +75,8 @@ if __name__ == "__main__":
     observer.stop()
 
   observer.join()
+
+# Still need to do:
+# 1. Exception handling
+# 2. Handling of duplicates
+# 3. Dry run mode (optional)
